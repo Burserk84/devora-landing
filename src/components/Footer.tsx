@@ -1,9 +1,56 @@
-import React from "react";
+"use client"; // This component now needs to be a client component
+
+import React, { useState } from "react";
 import { Reveal } from "./Reveal";
 
 export const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState(""); // '', 'loading', 'success', 'error'
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("loading");
+    setResponseMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setResponseMessage(data.message);
+        setFormData({ name: "", email: "", message: "" }); // Clear form
+      } else {
+        setStatus("error");
+        setResponseMessage(data.message || "An unknown error occurred.");
+      }
+    } catch (error) {
+      setStatus("error");
+      setResponseMessage(
+        "Failed to connect to the server. Please try again later." + error
+      );
+    }
+  };
+
   return (
-    <footer className="w-full bg-black-20">
+    <footer className="w-full bg-black-20" id="contact">
       <Reveal>
         <div className="py-20 px-4 text-center bg-gray-900">
           <h2 className="text-4xl font-bold text-white mb-4">
@@ -13,14 +60,63 @@ export const Footer = () => {
             بیایید با هم صحبت کنیم و ببینیم چطور می‌توانیم آن را به یک واقعیت
             دیجیتال شگفت‌انگیز تبدیل کنیم.
           </p>
-          <button
-            className="text-white font-bold py-3 px-8 rounded-lg text-lg 
-                       transition-all duration-300 ease-in-out 
-                       shadow-[0_0_10px_var(--color-tech-green)] 
-                       hover:shadow-[0_0_25px_var(--color-tech-green)]"
+
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-xl mx-auto flex flex-col gap-4"
           >
-            ارسال پیام برای مشاوره رایگان
-          </button>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="نام شما"
+              required
+              className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="ایمیل شما"
+              required
+              className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
+            />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="پیام شما..."
+              required
+              rows={5}
+              className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
+            ></textarea>
+
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="text-white font-bold py-3 px-8 rounded-lg text-lg 
+                         transition-all duration-300 ease-in-out 
+                         shadow-[0_0_10px_var(--color-tech-green)] 
+                         hover:shadow-[0_0_25px_var(--color-tech-green)] 
+                         disabled:bg-gray-500 disabled:shadow-none disabled:cursor-not-allowed"
+            >
+              {status === "loading"
+                ? "در حال ارسال..."
+                : "ارسال پیام برای مشاوره رایگان"}
+            </button>
+          </form>
+
+          {responseMessage && (
+            <div
+              className={`mt-4 text-lg ${
+                status === "success" ? "text-green-400" : "text-red-400"
+              }`}
+            >
+              {responseMessage}
+            </div>
+          )}
         </div>
       </Reveal>
       <div className="py-8 text-center border-t border-white/10">

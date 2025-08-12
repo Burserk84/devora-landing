@@ -1,6 +1,13 @@
+'use client'
 import React from "react";
 
 export const HeroSection = () => {
+  const handleScrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="w-full min-h-screen flex items-center justify-center text-center p-4 aurora-background">
       <div className="flex flex-col items-center gap-6 z-10">
@@ -12,6 +19,7 @@ export const HeroSection = () => {
           محصولات دیجیتال ماندگار.
         </p>
         <button
+          onClick={handleScrollToContact}
           className="text-white font-bold py-3 px-8 rounded-lg text-lg mt-4 
                      transition-all duration-300 ease-in-out 
                      shadow-[0_0_10px_var(--color-tech-green)] 
