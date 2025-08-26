@@ -25,27 +25,32 @@ export const Footer = () => {
     setResponseMessage("");
 
     try {
-      const response = await fetch("/api/contact", {
+      // --- THIS IS THE ONLY PART THAT CHANGES ---
+      const response = await fetch("https://formspree.io/f/mdklozpd", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { Accept: "application/json" },
         body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
+      // -----------------------------------------
 
       if (response.ok) {
         setStatus("success");
-        setResponseMessage(data.message);
+        setResponseMessage("Thanks for your submission!");
         setFormData({ name: "", email: "", message: "" }); // Clear form
       } else {
+        const data = await response.json();
+        if (data.errors) {
+          setResponseMessage(
+            data.errors.map((error: unknown) => error.message).join(", ")
+          );
+        } else {
+          setResponseMessage("An error occurred while submitting the form.");
+        }
         setStatus("error");
-        setResponseMessage(data.message || "An unknown error occurred.");
       }
     } catch (error) {
       setStatus("error");
-      setResponseMessage(
-        "Failed to connect to the server. Please try again later." + error
-      );
+      setResponseMessage("Failed to connect. Please try again later.");
     }
   };
 
