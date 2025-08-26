@@ -41,7 +41,7 @@ export const Footer = () => {
         const data = await response.json();
         if (data.errors) {
           setResponseMessage(
-            data.errors.map((error: any) => error.message).join(", ")
+            data.errors.map((error: unknown) => error.message).join(", ")
           );
         } else {
           setResponseMessage("An error occurred while submitting the form.");
