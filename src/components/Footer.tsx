@@ -25,7 +25,7 @@ export const Footer = () => {
     setResponseMessage("");
 
     try {
-      const response = await fetch("https://formspree.io/f/YOUR_UNIQUE_CODE", {
+      const response = await fetch("https://formspree.io/f/mdklozpd", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: JSON.stringify(formData),
