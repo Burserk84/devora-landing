@@ -50,7 +50,7 @@ export const Footer = () => {
       }
     } catch (error) {
       setStatus("error");
-      setResponseMessage("Failed to connect. Please try again later.");
+      setResponseMessage("Failed to connect. Please try again later." + error);
     }
   };
 
