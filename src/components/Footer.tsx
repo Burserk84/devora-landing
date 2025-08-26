@@ -25,26 +25,24 @@ export const Footer = () => {
     setResponseMessage("");
 
     try {
-      // --- THIS IS THE ONLY PART THAT CHANGES ---
-      const response = await fetch("https://formspree.io/f/mdklozpd", {
+      const response = await fetch("https://formspree.io/f/YOUR_UNIQUE_CODE", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: JSON.stringify(formData),
       });
-      // -----------------------------------------
 
       if (response.ok) {
         setStatus("success");
         setResponseMessage("Thanks for your submission!");
-        setFormData({ name: "", email: "", message: "" }); // Clear form
+        setFormData({ name: "", email: "", message: "" });
       } else {
         const data = await response.json();
-        if (data.errors) {
-          setResponseMessage(
-            data.errors.map((error: any) => error.message).join(", ")
-          );
+        if (data.errors && Array.isArray(data.errors)) {
+          // This is the corrected part with a proper type assertion
+          const errors = data.errors as { message: string }[];
+          setResponseMessage(errors.map((error) => error.message).join(", "));
         } else {
-          setResponseMessage("An error occurred while submitting the form.");
+          setResponseMessage(data.message || "An unknown error occurred.");
         }
         setStatus("error");
       }
