@@ -1,29 +1,46 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import { getMessages } from "@/i18n";
 import { TranslationsProvider } from "@/components/TranslationsProvider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jetbrainsMono = JetBrains_Mono({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-jetbrains-mono",
 });
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const messages = await getMessages(locale);
+  return {
+    title: messages.Metadata.title,
+    description: messages.Metadata.description,
+  };
+}
+
+type LayoutProps = {
+  children: React.ReactNode;
+  params: { locale: string };
+};
 
 export default async function LocaleLayout({
   children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const { locale } = params; // Get locale from params
+  params: { locale },
+}: LayoutProps) {
   const messages = await getMessages(locale);
 
   return (
     <html lang={locale} dir={locale === "fa" ? "rtl" : "ltr"}>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} bg-black-100 text-white font-inter`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TranslationsProvider messages={messages}>
           {children}
