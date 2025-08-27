@@ -20,7 +20,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale } = params;
 
   const messages = await getMessages(locale);
   return {
@@ -29,8 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
+export default async function LocaleLayout({
+  children,
+  params, 
+}: Props) {
+  const { locale } = params;
   const messages = await getMessages(locale);
 
   return (
