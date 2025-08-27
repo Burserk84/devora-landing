@@ -42,7 +42,7 @@ export const Footer = () => {
       }
     } catch (error) {
       setStatus("error");
-      setResponseMessage(messages.Contact.error_message);
+      setResponseMessage(messages.Contact.error_message + error);
     }
   };
 
