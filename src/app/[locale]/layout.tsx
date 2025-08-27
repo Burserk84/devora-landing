@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: any };
+  params: { locale: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
