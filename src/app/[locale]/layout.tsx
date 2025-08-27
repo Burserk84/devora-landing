@@ -10,14 +10,15 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+type LayoutProps = {
+  children: React.ReactNode;
+  params: { locale: string };
+};
+
 export default async function LocaleLayout({
   children,
   params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  // Load the messages for the current locale
+}: LayoutProps) {
   const messages = await getMessages(locale);
 
   return (
