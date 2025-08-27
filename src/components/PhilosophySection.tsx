@@ -1,7 +1,14 @@
+"use client";
 import React from "react";
 import { Reveal } from "./Reveal";
+import { useTranslations } from "./TranslationsProvider";
 
 export const PhilosophySection = () => {
+  const messages = useTranslations();
+
+  // Split the title to insert the span
+  const titleParts = messages.Philosophy.title.split("{span}");
+
   return (
     <section className="w-full py-24 px-4">
       <Reveal>
@@ -21,14 +28,12 @@ export const PhilosophySection = () => {
             </div>
             <div className="md:w-2/3 text-center md:text-right">
               <h2 className="text-4xl font-bold text-white mb-4">
-                Developer + Aura ={" "}
+                {titleParts[0]}
                 <span className="text-[var(--color-cyber-purple)]">Devora</span>
+                {titleParts[1]}
               </h2>
               <p className="text-lg text-[var(--color-subtle-tech)] leading-relaxed text-shadow">
-                ما معتقدیم که تکنولوژی فقط مجموعه‌ای از خطوط کد نیست. هر پروژه
-                یک &quot;Aura&quot; یا هاله منحصر به فرد دارد؛ انرژی‌ای که از
-                ترکیب منطق مهندسی و شهود خلاقانه متولد می‌شود. ماموریت ما، دمیدن
-                این روح در محصولات دیجیتال شماست.
+                {messages.Philosophy.description}
               </p>
             </div>
           </div>

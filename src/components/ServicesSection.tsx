@@ -1,27 +1,27 @@
+"use client";
 import React from "react";
 import { Reveal } from "./Reveal";
+import { useTranslations } from "./TranslationsProvider";
 
 export const ServicesSection = () => {
+  const messages = useTranslations();
+
   return (
     <section className="w-full py-24 px-4">
       <div className="container mx-auto text-center">
         <Reveal>
-          <h2 className="text-4xl font-bold text-white mb-2">تخصص ما</h2>
+          <h2 className="text-4xl font-bold text-white mb-2">
+            {messages.Services.title}
+          </h2>
           <p className="text-lg text-[var(--color-subtle-tech)] mb-16 text-shadow">
-            از ایده تا اجرا، ما در کنار شماییم.
+            {messages.Services.subtitle}
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1: Front-end */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Reveal>
             <div className="h-full rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 bg-white/5 backdrop-blur-lg border border-[var(--color-cyber-purple)]/20 hover:border-[var(--color-cyber-purple)]/60 hover:shadow-[0_0_25px_rgba(159,84,255,0.2)]">
               <div className="mx-auto mb-6 h-16 w-16 text-[var(--color-cyber-purple)]">
-                {/* --- SVG FIXES ---
-                  - Removed hardcoded stroke="#9f54ff"
-                  - Set stroke="currentColor" to inherit color from parent
-                  - Removed unnecessary <g> wrapper tags
-                */}
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -36,22 +36,18 @@ export const ServicesSection = () => {
                   ></path>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Front-end</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {messages.Services.card1_title}
+              </h3>
               <p className="text-[var(--color-subtle-tech)]">
-                ساخت رابط‌های کاربری واکنش‌گرا، سریع و جذاب.
+                {messages.Services.card1_desc}
               </p>
             </div>
           </Reveal>
 
-          {/* Card 2: Back-end */}
           <Reveal>
             <div className="h-full rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 bg-white/5 backdrop-blur-lg border border-[var(--color-cyber-purple)]/20 hover:border-[var(--color-cyber-purple)]/60 hover:shadow-[0_0_25px_rgba(159,84,255,0.2)]">
               <div className="mx-auto mb-6 h-16 w-16 text-[var(--color-cyber-purple)]">
-                {/* --- SVG FIXES ---
-                  - Removed hardcoded fill and stroke attributes
-                  - Set fill="currentColor" on paths that need color
-                  - Removed unnecessary <g> and <defs> tags
-                */}
                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="23" cy="23" r="1" fill="currentColor"></circle>
                   <rect
@@ -75,22 +71,18 @@ export const ServicesSection = () => {
                   ></path>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Back-end</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {messages.Services.card2_title}
+              </h3>
               <p className="text-[var(--color-subtle-tech)]">
-                طراحی معماری‌های سرور قدرتمند، امن و مقیاس‌پذیر.
+                {messages.Services.card2_desc}
               </p>
             </div>
           </Reveal>
 
-          {/* Card 3: UI/UX Design */}
           <Reveal>
             <div className="h-full rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 bg-white/5 backdrop-blur-lg border border-[var(--color-cyber-purple)]/20 hover:border-[var(--color-cyber-purple)]/60 hover:shadow-[0_0_25px_rgba(159,84,255,0.2)]">
               <div className="mx-auto mb-6 h-16 w-16 text-[var(--color-cyber-purple)]">
-                {/* --- SVG FIXES ---
-                  - Removed hardcoded stroke and width/height attributes
-                  - Set stroke="currentColor" to inherit color
-                  - Removed unnecessary <g> wrappers
-                */}
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -113,10 +105,10 @@ export const ServicesSection = () => {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
-                UI/UX Design
+                {messages.Services.card3_title}
               </h3>
               <p className="text-[var(--color-subtle-tech)]">
-                خلق تجربه‌های کاربری معنادار و رابط‌های بصری زیبا.
+                {messages.Services.card3_desc}
               </p>
             </div>
           </Reveal>

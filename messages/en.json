@@ -1,0 +1,39 @@
+{
+  "Metadata": {
+    "title": "Devora | Crafting Digital Aura",
+    "description": "We give code a soul. A blend of precision engineering and creative design."
+  },
+  "Hero": {
+    "subtitle": "We give code a soul. A blend of precision engineering and creative design to build timeless digital products.",
+    "button": "Start Your Dream Project"
+  },
+  "Services": {
+    "title": "Our Expertise",
+    "subtitle": "From idea to execution, we are with you.",
+    "card1_title": "Front-end",
+    "card1_desc": "Building responsive, fast, and engaging user interfaces.",
+    "card2_title": "Back-end",
+    "card2_desc": "Designing powerful, secure, and scalable server architectures.",
+    "card3_title": "UI/UX Design",
+    "card3_desc": "Creating meaningful user experiences and beautiful visual interfaces."
+  },
+  "Philosophy": {
+    "title": "Developer + Aura = ",
+    "description": "We believe technology isn't just a set of code lines. Every project has a unique 'Aura'; an energy born from the fusion of engineering logic and creative intuition. Our mission is to breathe this soul into your digital products."
+  },
+  "Contact": {
+    "title": "Have an idea in mind?",
+    "subtitle": "Let's talk and see how we can turn it into an amazing digital reality.",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Your Message...",
+    "button_submit": "Send Message for a Free Consultation",
+    "button_loading": "Sending...",
+    "success_message": "Thank you! Your message has been sent successfully.",
+    "error_message": "An error occurred. Please try again."
+  },
+  "Footer": {
+    "copyright": "© 2025 Devora. All Rights Reserved.",
+    "made_with": "Designed with love and code"
+  }
+}

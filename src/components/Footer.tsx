@@ -1,15 +1,16 @@
-"use client"; // This component now needs to be a client component
-
+"use client";
 import React, { useState } from "react";
 import { Reveal } from "./Reveal";
+import { useTranslations } from "./TranslationsProvider";
 
 export const Footer = () => {
+  const messages = useTranslations();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState(""); // '', 'loading', 'success', 'error'
+  const [status, setStatus] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
   const handleInputChange = (
@@ -33,22 +34,15 @@ export const Footer = () => {
 
       if (response.ok) {
         setStatus("success");
-        setResponseMessage("Thanks for your submission!");
+        setResponseMessage(messages.Contact.success_message);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        const data = await response.json();
-        if (data.errors && Array.isArray(data.errors)) {
-          // This is the corrected part with a proper type assertion
-          const errors = data.errors as { message: string }[];
-          setResponseMessage(errors.map((error) => error.message).join(", "));
-        } else {
-          setResponseMessage(data.message || "An unknown error occurred.");
-        }
         setStatus("error");
+        setResponseMessage(messages.Contact.error_message);
       }
     } catch (error) {
       setStatus("error");
-      setResponseMessage("Failed to connect. Please try again later." + error);
+      setResponseMessage(messages.Contact.error_message);
     }
   };
 
@@ -57,11 +51,10 @@ export const Footer = () => {
       <Reveal>
         <div className="py-20 px-4 text-center bg-gray-900">
           <h2 className="text-4xl font-bold text-white mb-4">
-            ایده‌ای در ذهن دارید؟
+            {messages.Contact.title}
           </h2>
           <p className="text-lg text-[var(--color-subtle-tech)] mb-8 max-w-2xl mx-auto text-shadow">
-            بیایید با هم صحبت کنیم و ببینیم چطور می‌توانیم آن را به یک واقعیت
-            دیجیتال شگفت‌انگیز تبدیل کنیم.
+            {messages.Contact.subtitle}
           </p>
 
           <form
@@ -73,7 +66,7 @@ export const Footer = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder="نام شما"
+              placeholder={messages.Contact.form_name}
               required
               className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
             />
@@ -82,7 +75,7 @@ export const Footer = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="ایمیل شما"
+              placeholder={messages.Contact.form_email}
               required
               className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
             />
@@ -90,7 +83,7 @@ export const Footer = () => {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              placeholder="پیام شما..."
+              placeholder={messages.Contact.form_message}
               required
               rows={5}
               className="bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder:text-subtle-tech focus:outline-none focus:ring-2 focus:ring-[var(--color-cyber-purple)] transition-all"
@@ -99,15 +92,11 @@ export const Footer = () => {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="text-white font-bold py-3 px-8 rounded-lg text-lg 
-                         transition-all duration-300 ease-in-out 
-                         shadow-[0_0_10px_var(--color-tech-green)] 
-                         hover:shadow-[0_0_25px_var(--color-tech-green)] 
-                         disabled:bg-gray-500 disabled:shadow-none disabled:cursor-not-allowed"
+              className="text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 ease-in-out shadow-[0_0_10px_var(--color-tech-green)] hover:shadow-[0_0_25px_var(--color-tech-green)] disabled:bg-gray-500 disabled:shadow-none disabled:cursor-not-allowed"
             >
               {status === "loading"
-                ? "در حال ارسال..."
-                : "ارسال پیام برای مشاوره رایگان"}
+                ? messages.Contact.button_loading
+                : messages.Contact.button_submit}
             </button>
           </form>
 
@@ -124,9 +113,11 @@ export const Footer = () => {
       </Reveal>
       <div className="py-8 text-center border-t border-white/10">
         <p className="text-[var(--color-subtle-tech)]">
-          &copy; 2025 Devora. All Rights Reserved.
+          {messages.Footer.copyright}
         </p>
-        <p className="text-xs text-gray-500 mt-2">طراحی شده با عشق و کد</p>
+        <p className="text-xs text-gray-500 mt-2">
+          {messages.Footer.made_with}
+        </p>
       </div>
     </footer>
   );

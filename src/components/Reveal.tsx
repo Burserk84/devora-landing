@@ -1,17 +1,12 @@
-// =================================================================
-// FILE: src/components/Reveal.tsx
-// =================================================================
 "use client";
-
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
-  width?: "fit-content" | "100%";
 }
 
-export const Reveal = ({ children, width = "100%" }: RevealProps) => {
+export const Reveal = ({ children }: RevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -23,7 +18,7 @@ export const Reveal = ({ children, width = "100%" }: RevealProps) => {
   }, [isInView, mainControls]);
 
   return (
-    <div ref={ref} style={{ position: "relative", width }}>
+    <div ref={ref} style={{ position: "relative" }} className="h-full">
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 75 },
@@ -32,6 +27,7 @@ export const Reveal = ({ children, width = "100%" }: RevealProps) => {
         initial="hidden"
         animate={mainControls}
         transition={{ duration: 0.6, delay: 0.25 }}
+        className="h-full"
       >
         {children}
       </motion.div>
