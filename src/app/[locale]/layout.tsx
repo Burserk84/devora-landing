@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: unknown };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -29,10 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params, 
-}: Props) {
+export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = params;
   const messages = await getMessages(locale);
 
