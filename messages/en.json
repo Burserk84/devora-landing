@@ -32,6 +32,11 @@
     "success_message": "Thank you! Your message has been sent successfully.",
     "error_message": "An error occurred. Please try again."
   },
+  "Portfolio": {
+    "title": "Our Portfolio",
+    "view_live": "View Live",
+    "source_code": "Source Code"
+  },
   "Footer": {
     "copyright": "© 2025 Devora. All Rights Reserved.",
     "made_with": "Designed with love and code"
