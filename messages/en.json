@@ -1,7 +1,22 @@
 {
   "Metadata": {
     "title": "Devora | Crafting Digital Aura",
-    "description": "We give code a soul. A blend of precision engineering and creative design."
+    "description": "We give code a soul. A blend of precision engineering and creative design.",
+    "openGraph": {
+      "title": "Devora | Crafting Digital Aura",
+      "description": "We give code a soul. A blend of precision engineering and creative design.",
+      "url": "https://www.devorastudio.ir",
+      "siteName": "Devora Studio",
+      "images": [
+        {
+          "url": "https://www.devorastudio.ir/devora-preview.png",
+          "width": 1200,
+          "height": 627
+        }
+      ],
+      "locale": "en_US",
+      "type": "website"
+    }
   },
   "Hero": {
     "subtitle": "We give code a soul. A blend of precision engineering and creative design to build timeless digital products.",

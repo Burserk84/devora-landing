@@ -1,7 +1,22 @@
 {
   "Metadata": {
     "title": "Devora | جان‌بخشی به آرای دیجیتال",
-    "description": "ما به کد، روح می‌بخشیم. ترکیبی از مهندسی دقیق و طراحی خلاق."
+    "description": "ما به کد، روح می‌بخشیم. ترکیبی از مهندسی دقیق و طراحی خلاق.",
+    "openGraph": {
+      "title": "Devora | جان‌بخشی به آرای دیجیتال",
+      "description": "ما به کد، روح می‌بخشیم. ترکیبی از مهندسی دقیق و طراحی خلاق.",
+      "url": "https://www.devorastudio.ir/fa",
+      "siteName": "Devora Studio",
+      "images": [
+        {
+          "url": "https://www.devorastudio.ir/devora-preview.png",
+          "width": 1200,
+          "height": 627
+        }
+      ],
+      "locale": "fa_IR",
+      "type": "website"
+    }
   },
   "Hero": {
     "subtitle": "ما به کد، روح می‌بخشیم. ترکیبی از مهندسی دقیق و طراحی خلاق برای ساخت محصولات دیجیتال ماندگار.",

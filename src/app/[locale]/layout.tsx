@@ -23,9 +23,11 @@ export async function generateMetadata({
 }: MetadataProps): Promise<Metadata> {
   const { locale } = params;
   const messages = await getMessages(locale);
+
   return {
     title: messages.Metadata.title,
     description: messages.Metadata.description,
+    openGraph: messages.Metadata.openGraph,
   };
 }
 
