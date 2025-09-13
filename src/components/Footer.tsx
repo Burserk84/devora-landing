@@ -26,7 +26,7 @@ export const Footer = () => {
     setResponseMessage("");
 
     try {
-      const response = await fetch("https://formspree.io/f/mdklozpd", {
+      const response = await fetch(NEXT_PUBLIC_FORMSPREE_URL!, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: JSON.stringify(formData),
